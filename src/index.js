@@ -4,24 +4,40 @@ import './index.css';
 import Navbar from './Navbar.js';
 import BrandArea from './brandarea.js';
 import Menu from './menu.js';
-import Slider from './slider.js';
-import PromoArea from './promoarea.js';
-import MainContent from './maincontent.js';
+import HomePage from './homepage.js';
 import FooterTop from './footertop.js';
+import SingleProduct from './single_product.js';
+// Redux stuff
+import devices from './reducers/reducers';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { apiMiddleware } from 'redux-api-middleware';
+import { Router, Route, browserHistory } from 'react-router';
 
-const App = () => (
+// Create store
+const reducers = {
+  devices: devices
+};
+
+const reducer = combineReducers(reducers);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(apiMiddleware));
+
+const App = (props) => (
   <div>
     <Navbar />,
     <BrandArea />,
     <Menu />,
-    <Slider />,
-    <PromoArea />,
-    <MainContent />,
+    <Router { ...props}>
+      <Route path="/" component={HomePage} />
+      <Route path="/single" component={SingleProduct} />
+    </Router>
     <FooterTop />
   </div>
 );
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App history={browserHistory} />
+  </Provider>,
   document.getElementById('root')
 );

@@ -23,25 +23,25 @@ class PromoArea extends Component {
             <div className="col-md-3 col-sm-6">
               <div className="single-promo promo1">
                 <i className="fa fa-refresh"></i>
-                <p>30 Days return</p>
+                <p>Rimborso 30 giorni</p>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="single-promo promo2">
                 <i className="fa fa-truck"></i>
-                <p>Free shipping</p>
+                <p>Consegna gratuita</p>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="single-promo promo3">
                 <i className="fa fa-lock"></i>
-                <p>Secure payments</p>
+                <p>Pagamenti sicuri</p>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="single-promo promo4">
                 <i className="fa fa-gift"></i>
-                <p>New products</p>
+                <p>Nuovi prodotti</p>
               </div>
             </div>
           </div>

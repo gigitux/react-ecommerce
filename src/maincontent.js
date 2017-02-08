@@ -10,50 +10,73 @@ import '../templating/js/main.js';
 import '../templating/js/jquery.sticky.js';
 import '../templating/js/owl.carousel.min.js';
 import '../templating/js/jquery.easing.1.3.min.js';
+// Import Redux Stuff
+import { connect } from 'react-redux';
+import * as Actions from './actions/actions.js';
+import Loading from 'react-loading';
 
 // Page dependencies
 
 class MainContent extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+    };
+  }
   render () {
-    return (
-      <div className="maincontent-area">
-        <div className="zigzag-bottom"></div>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="latest-product">
-                <h2 className="section-title">Latest Products</h2>
-                <div className="product-carousel">
-                  <div className="single-product">
-                    <div className="product-f-image">
-                      <img src="img/product-1.jpg" alt="" />
-                      <div className="product-hover">
-                        <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
-                        <a href="single-product.html" className="view-details-link"><i className="fa fa-link"></i> See details</a>
-                      </div>
-                    </div>
-                    <h2><a href="single-product.html">Samsung Galaxy s5- 2015</a></h2>
-                    <div className="product-carousel-price">
-                      <ins>$700</ins> <del>$100</del>
-                    </div>
-                  </div>
-                  <div className="single-product">
-                    <div className="product-f-image">
-                      <img src="img/product-2.jpg" alt="" />
-                      <div className="product-hover">
-                        <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
-                        <a href="single-product.html" className="view-details-link"><i className="fa fa-link"></i> See details</a>
-                      </div>
-                    </div>
+    if (this.props.devices == null) {
+      return (
+        <Loading type='balls' color='#e3e3e3'/>
+      );
+    } else {
+      const devices_recent = this.props.devices.map((recent) =>
+      <div className="single-product">
+        <div className="product-f-image">
+          <img src={recent.images[0]} alt="" />
+          <div className="product-hover">
+            <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
+            <a href="single-product.html" className="view-details-link"><i className="fa fa-link"></i> See details</a>
+          </div>
+        </div>
+        <h2><a href="single-product.html">{recent.model}</a></h2>
+        <div className="product-carousel-price">
+          <ins>{recent.price}</ins>
+        </div>
+      </div>
+    );
+      return (
+        <div className="maincontent-area">
+          <div className="zigzag-bottom"></div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="latest-product">
+                  <h2 className="section-title">Ultimi Prodotti</h2>
+                  <div className="product-carousel">
+                    {devices_recent}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
-export default MainContent;
+function mapStateToProps (state) {
+  return {
+    devices: state.devices.devices
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetch_devices: () => {
+      dispatch(Actions.fetch_devices());
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
