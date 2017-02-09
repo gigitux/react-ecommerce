@@ -33,6 +33,7 @@ class Slider extends Component {
         <Loading type='balls' color='#e3e3e3'/>
       );
     } else {
+      console.log(this.props.devices)
       const devices_slider = this.props.devices.map((slider) =>
         <div key={slider.id}>
           <li>

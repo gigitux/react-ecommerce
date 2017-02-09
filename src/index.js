@@ -29,7 +29,7 @@ const App = (props) => (
     <Menu />,
     <Router { ...props}>
       <Route path="/" component={HomePage} />
-      <Route path="/single" component={SingleProduct} />
+      <Route path="/shop/:name" component={SingleProduct} />
     </Router>
     <FooterTop />
   </div>

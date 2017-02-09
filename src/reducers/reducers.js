@@ -9,6 +9,18 @@ export default function device (state = initialState, action) {
       return {
         devices: action.payload
       };
+    case types.FETCH_SPECIFIC_DEVICE_SUCCESS:
+      return {
+        ...state,
+        specific_device: action.payload
+      };
+    case types.LOGIN_SUCCESS:
+      sessionStorage.setItem('user', JSON.stringify(action.payload));
+      location.reload();
+      return {
+        ...state,
+        user: action.payload
+      };
     default:
       return state;
   }

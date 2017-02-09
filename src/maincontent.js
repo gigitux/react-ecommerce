@@ -30,19 +30,19 @@ class MainContent extends Component {
       );
     } else {
       const devices_recent = this.props.devices.map((recent) =>
-      <div className="single-product">
-        <div className="product-f-image">
-          <img src={recent.images[0]} alt="" />
-          <div className="product-hover">
-            <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
-            <a href="single-product.html" className="view-details-link"><i className="fa fa-link"></i> See details</a>
+        <div className="single-product">
+          <div className="product-f-image">
+            <img src={recent.images[0]} alt="" height="212" width="264" />
+            <div className="product-hover">
+              <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
+              <a href={'/shop/' + recent.model.split(' ').join('-')} className="view-details-link"><i className="fa fa-link"></i> Maggiori Dettagli</a>
+            </div>
+          </div>
+          <h2><a href={'/shop/' + recent.model.split(' ').join('-')}>{recent.model}</a></h2>
+          <div className="product-carousel-price">
+            <ins>{recent.price}</ins>
           </div>
         </div>
-        <h2><a href="single-product.html">{recent.model}</a></h2>
-        <div className="product-carousel-price">
-          <ins>{recent.price}</ins>
-        </div>
-      </div>
     );
       return (
         <div className="maincontent-area">
@@ -52,7 +52,7 @@ class MainContent extends Component {
               <div className="col-md-12">
                 <div className="latest-product">
                   <h2 className="section-title">Ultimi Prodotti</h2>
-                  <div className="product-carousel">
+                  <div className="product-carousel owl-carousel owl-theme owl-responsive-1000 owl-loaded">
                     {devices_recent}
                   </div>
                 </div>
