@@ -47,10 +47,7 @@ export default class InfoProduct extends Component {
                 </div>
 
                 <form action="" className="cart">
-                  <div className="quantity">
-                    <input type="number" size="4" className="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1" />
-                  </div>
-                  <button className="add_to_cart_button" type="submit">Aggiungi al carello</button>
+                  <button className="add_to_cart_button" type="submit" onClick={() => this.props.addtocart(this.props.model, this.props.price)}>Aggiungi al carello</button>
                 </form>
 
                 <div className="tab-content">
@@ -59,21 +56,21 @@ export default class InfoProduct extends Component {
                     <Tab eventKey={2} title="Recensioni">{list_reviews}</Tab>
                   </Tabs>
                   {this.props.email == null ? "" :
-                  <div className="submit-review">
-                    <form>
-                      <FormGroup
-                        controlId="Userna"
-                      >
-                        <FormControl
-                          type="text"
-                          value={this.state.comment}
-                          placeholder="Inserisci Commento"
-                          onChange={this.handleChangeComment}
-                        />
-                      <Button bsStyle="primary" onClick={() => this.props.addcomment(this.props.model, this.props.email, this.state.comment)}>Invia</Button>
-                      </FormGroup>
-                    </form>
-                  </div>
+                    <div className="submit-review">
+                      <form>
+                        <FormGroup
+                          controlId="Userna"
+                        >
+                          <FormControl
+                            type="text"
+                            value={this.state.comment}
+                            placeholder="Inserisci Commento"
+                            onChange={this.handleChangeComment}
+                          />
+                          <Button bsStyle="primary" onClick={() => this.props.addcomment(this.props.model, this.props.email, this.state.comment)}>Invia</Button>
+                        </FormGroup>
+                      </form>
+                    </div>
                 }
                 </div>
               </div>

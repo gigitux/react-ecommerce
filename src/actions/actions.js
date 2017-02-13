@@ -64,7 +64,6 @@ export function login (username, password) {
 }
 
 export function addcomment (model, email, review) {
-  console.log(model, email, review)
   return {
     [CALL_API]: {
       endpoint: 'http://localhost:9000/api/addcomment',
@@ -79,6 +78,63 @@ export function addcomment (model, email, review) {
         types.ADDCOMMENT_REQUEST,
         {
           type: types.ADDCOMMENT_SUCCESS,
+          payload: (action, state, res) => {
+            return res.json();
+          }
+        },
+        'FAILURE'
+      ]
+    }
+  };
+}
+
+export function addtocart (model, price) {
+  return {
+    type: types.ADDTOCART,
+    model,
+    price
+  };
+}
+
+export function registration (name, surname, email, password) {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:9000/api/registration/',
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: name,
+        surname: surname,
+        email: email,
+        password: password
+      }),
+      types: [
+        types.REGISTRATION_REQUEST,
+        {
+          type: types.REGISTRATION_SUCCESS,
+          payload: (action, state, res) => {
+            return res.json();
+          }
+        },
+        'FAILURE'
+      ]
+    }
+  };
+}
+
+export function checkout (device) {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:9000/api/checkout',
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        device: device
+      }),
+      types: [
+        types.CHECKOUT_REQUEST,
+        {
+          type: types.CHECKOUT_SUCCESS,
           payload: (action, state, res) => {
             return res.json();
           }

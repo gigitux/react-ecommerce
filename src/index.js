@@ -7,6 +7,9 @@ import Menu from './menu.js';
 import HomePage from './homepage.js';
 import FooterTop from './footertop.js';
 import SingleProduct from './single_product.js';
+import Cart from './cart.js';
+import Checkout from './checkout.js';
+
 // Redux stuff
 import devices from './reducers/reducers';
 import { Provider } from 'react-redux';
@@ -30,6 +33,8 @@ const App = (props) => (
     <Router { ...props}>
       <Route path="/" component={HomePage} />
       <Route path="/shop/:name" component={SingleProduct} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
     </Router>
     <FooterTop />
   </div>

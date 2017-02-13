@@ -60,7 +60,6 @@ router.route('/devices')
 
 router.route('/shop/:name')
 .get(function (req, res) {
-  console.log(req.user)
   var replaced = req.params.name.split('-').join(' ');
   console.log(replaced);
   device.find({model: replaced}, function (err, device) {
@@ -105,6 +104,21 @@ router.route('/addcomment')
   }
 );
 });
+
+router.route('/checkout')
+.post(function (req, res) {
+  req.body.device.every(function (devices) {
+    device.findOne({model: devices.model}, function (err, devices) {
+      if (devices == null) {
+        res.status(500).json({ error: 'errore!' })
+      } else {
+        console.log("blabla")
+        res.json({ message: 'Acquisto effettuato' });
+      }
+    });
+  });
+});
+
 // Login
 passport.use(new LocalStrategy(
   function (username, password, done) {

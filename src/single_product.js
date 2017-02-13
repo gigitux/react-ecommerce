@@ -42,7 +42,7 @@ export class SingleProduct extends Component {
     } else {
       return (
         <div>
-          <ShopTitle />
+          <ShopTitle title="Acquista" />
           <div className="single-product-area">
             <div className="zigzag-bottom" />
             <div className="container">
@@ -52,8 +52,8 @@ export class SingleProduct extends Component {
                   <Sidebar />
                 </div>
                 {this.state.user === null ?
-                <InfoProduct {...this.props.specific_device[0]} addcomment={this.props.addcomment}  />
-                : <InfoProduct {...this.props.specific_device[0]} addcomment={this.props.addcomment} email={this.state.user.email} />}
+                <InfoProduct {...this.props.specific_device[0]} addcomment={this.props.addcomment} addtocart={this.props.addtocart}  />
+                : <InfoProduct {...this.props.specific_device[0]} addcomment={this.props.addcomment} email={this.state.user.email} addtocart={this.props.addtocart} />}
               </div>
             </div>
           </div>
@@ -76,6 +76,9 @@ function mapDispatchToProps (dispatch) {
     },
     addcomment: (model, user, review) => {
       dispatch(Actions.addcomment(model, user, review));
+    },
+    addtocart: (model, price) => {
+      dispatch(Actions.addtocart(model, price));
     }
   };
 }

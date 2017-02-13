@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// Import Redux Stuff
+import { connect } from 'react-redux';
 
 // Theme dependencies
 import './App.css';
@@ -15,7 +17,16 @@ import '../templating/js/jquery.easing.1.3.min.js';
 import logo from './assets/img/logo.png';
 
 class BrandArea extends Component {
+
   render () {
+    if (sessionStorage.getItem('cart') !== null) {
+      var array_cart = JSON.parse(sessionStorage.getItem('cart'));
+      var sum = 0
+      console.log(array_cart.length);
+      array_cart.forEach(function (item, index) {
+        sum += parseInt(item.price, 10);
+      });
+    }
     return (
       <div className="site-branding-area">
         <div className="container">
@@ -28,7 +39,7 @@ class BrandArea extends Component {
 
             <div className="col-sm-6">
               <div className="shopping-item">
-                <a href="cart.html">Cart - <span className="cart-amunt">$100</span> <i className="fa fa-shopping-cart"></i> <span className="product-count">5</span></a>
+                <a href="cart.html">Cart - <span className="cart-amunt">{sum == null ? 0 : sum}$</span> <i className="fa fa-shopping-cart"></i> <span className="product-count">{array_cart == null ? 0 : array_cart.length }</span></a>
               </div>
             </div>
           </div>
@@ -38,4 +49,12 @@ class BrandArea extends Component {
   }
 }
 
-export default BrandArea;
+function mapStateToProps (state) {
+  return {
+    specific_device: state.devices.specific_device,
+    add_devices: state.devices.add_devices,
+    cart: state.devices.price
+  };
+}
+
+export default connect(mapStateToProps)(BrandArea);
