@@ -55,7 +55,7 @@ export default class InfoProduct extends Component {
                     <Tab eventKey={1} title="Descrizione Prodotto">{this.props.description}</Tab>
                     <Tab eventKey={2} title="Recensioni">{list_reviews}</Tab>
                   </Tabs>
-                  {this.props.email == null ? "" :
+                  {this.props.email == null ? <b>Loggati per aggiungere un commento</b> :
                     <div className="submit-review">
                       <form>
                         <FormGroup

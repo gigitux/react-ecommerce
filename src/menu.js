@@ -29,8 +29,7 @@ class Menu extends Component {
             </div>
             <div className="navbar-collapse collapse">
               <ul className="nav navbar-nav">
-                <li className="active"><a href="/">Home</a></li>
-                <li><a href="shop.html">Shop page</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/cart">Carrello</a></li>
                 <li><a href="/checkout">Checkout</a></li>
               </ul>
