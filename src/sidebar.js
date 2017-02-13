@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loading from 'react-loading';
 
 export default class Sidebar extends Component {
   constructor (props) {
@@ -7,38 +8,27 @@ export default class Sidebar extends Component {
     };
   }
   render () {
-    return (
-      <div className="single-sidebar">
-        <h2 className="sidebar-title">Products</h2>
+    console.log(this.props.sidebar)
+    if (this.props.sidebar == null) {
+      return (
+        <Loading type='balls' color='#e3e3e3'/>
+        );
+    } else {
+      const sidebar_list = this.props.sidebar.map((list) =>
         <div className="thubmnail-recent">
-          <img src="img/product-thumb-1.jpg" className="recent-thumb" alt="" />
-          <h2><a href="">Sony Smart TV - 2015</a></h2>
+          <img src={list.images[0]} className="recent-thumb" alt="" />
+          <h2><a href={list.model.split(' ').join('-')}>{list.model}</a></h2>
           <div className="product-sidebar-price">
-            <ins>$700</ins> <del>$100</del>
+            <ins>{list.price}</ins>
           </div>
         </div>
-        <div className="thubmnail-recent">
-          <img src="img/product-thumb-1.jpg" className="recent-thumb" alt="" />
-          <h2><a href="">Sony Smart TV - 2015</a></h2>
-          <div className="product-sidebar-price">
-            <ins>$700</ins> <del>$100</del>
-          </div>
+      );
+      return (
+        <div className="single-sidebar">
+          <h2 className="sidebar-title">Prodotti</h2>
+          {sidebar_list}
         </div>
-        <div className="thubmnail-recent">
-          <img src="img/product-thumb-1.jpg" className="recent-thumb" alt="" />
-          <h2><a href="">Sony Smart TV - 2015</a></h2>
-          <div className="product-sidebar-price">
-            <ins>$700</ins> <del>$100</del>
-          </div>
-        </div>
-        <div className="thubmnail-recent">
-          <img src="img/product-thumb-1.jpg" className="recent-thumb" alt="" />
-          <h2><a href="">Sony Smart TV - 2015</a></h2>
-          <div className="product-sidebar-price">
-            <ins>$700</ins> <del>$100</del>
-          </div>
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }

@@ -16,6 +16,7 @@ import '../templating/js/bxslider.min.js';
 import { connect } from 'react-redux';
 import * as Actions from './actions/actions.js';
 import Loading from 'react-loading';
+import {Carousel} from 'react-bootstrap'
 
 class Slider extends Component {
   constructor (props) {
@@ -35,23 +36,20 @@ class Slider extends Component {
     } else {
       console.log(this.props.devices)
       const devices_slider = this.props.devices.map((slider) =>
-        <div key={slider.id}>
-          <li>
-            <img src={slider.image} alt="Slide" />
-            <div className="caption-group">
-              <h2 className="caption title">
-                {slider.model}
-              </h2>
-              <a className="caption button-radius" href="#"><span className="icon"></span>Acquista adesso</a>
-            </div>
-          </li>
-        </div>
+        <Carousel.Item><img width={900} height={500} src={slider.images[0]} alt="Slide" />
+        <Carousel.Caption>
+          <h3>{slider.model}</h3>
+        </Carousel.Caption>
+        </Carousel.Item>
     );
       return (
         <div className="slider-area">
           <div className="block-slider block-slider4">
             <ul className="" id="bxslider-home4">
+              <Carousel>
             {devices_slider}
+          </Carousel>
+
             </ul>
           </div>
         </div>

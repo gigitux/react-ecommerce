@@ -34,7 +34,7 @@ class MainContent extends Component {
           <div className="product-f-image">
             <img src={recent.images[0]} alt="" height="212" width="264" />
             <div className="product-hover">
-              <a href="#" className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Add to cart</a>
+              <a href="" onClick={() => this.props.addtocart(recent.model, recent.price)} className="add-to-cart-link"><i className="fa fa-shopping-cart"></i> Aggiungi al carrello </a>
               <a href={'/shop/' + recent.model.split(' ').join('-')} className="view-details-link"><i className="fa fa-link"></i> Maggiori Dettagli</a>
             </div>
           </div>
@@ -75,6 +75,9 @@ function mapDispatchToProps (dispatch) {
   return {
     fetch_devices: () => {
       dispatch(Actions.fetch_devices());
+    },
+    addtocart: (model, price) => {
+      dispatch(Actions.addtocart(model, price));
     }
   };
 }

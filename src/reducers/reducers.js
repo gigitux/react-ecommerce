@@ -47,6 +47,12 @@ export default function device (state = initialState, action) {
       break;
     case "FAILURE":
     alert("Acquisto Fallito");
+      break;
+    case types.SIDEBAR_SUCCESS:
+      return {
+        ...state,
+        sidebar: action.payload
+      };
     default:
       return state;
   }

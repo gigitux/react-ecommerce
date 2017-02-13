@@ -39,7 +39,7 @@ class BrandArea extends Component {
 
             <div className="col-sm-6">
               <div className="shopping-item">
-                <a href="cart.html">Cart - <span className="cart-amunt">{sum == null ? 0 : sum}$</span> <i className="fa fa-shopping-cart"></i> <span className="product-count">{array_cart == null ? 0 : array_cart.length }</span></a>
+                <a href="/cart">Cart - <span className="cart-amunt">{sum == null ? 0 : sum}$</span> <i className="fa fa-shopping-cart"></i> <span className="product-count">{array_cart == null ? 0 : array_cart.length }</span></a>
               </div>
             </div>
           </div>

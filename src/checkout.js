@@ -3,7 +3,7 @@ import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as Actions from './actions/actions.js';
 
- class Checkout extends Component {
+class Checkout extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -28,7 +28,7 @@ import * as Actions from './actions/actions.js';
       this.setState({device: JSON.parse(sessionStorage.getItem('cart'))});
     }
   }
-  verifyandsubmit() {
+  verifyandsubmit () {
     if (this.state.name === undefined) {
       alert("Campo obbligatorio")
     } else {
@@ -51,8 +51,6 @@ import * as Actions from './actions/actions.js';
     this.setState({country: e.target.value});
   }
   render () {
-    console.log(this.state)
-    console.log(this.state.device)
     var country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
     ,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
     ,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"

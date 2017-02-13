@@ -27,9 +27,9 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 
 const App = (props) => (
   <div>
-    <Navbar />,
-    <BrandArea />,
-    <Menu />,
+    <Navbar />
+    <BrandArea />
+    <Menu />
     <Router { ...props}>
       <Route path="/" component={HomePage} />
       <Route path="/shop/:name" component={SingleProduct} />

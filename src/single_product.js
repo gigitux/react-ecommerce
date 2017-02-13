@@ -28,6 +28,7 @@ export class SingleProduct extends Component {
   }
   componentWillMount () {
     this.props.fetch_specific_device(this.props.routeParams.name);
+    this.props.find_element_sidebar();
     if (sessionStorage.getItem('user') === null) {
       return null
     } else {
@@ -40,6 +41,7 @@ export class SingleProduct extends Component {
         <Loading type='balls' color='#e3e3e3'/>
         );
     } else {
+      console.log(this.props.sidebar)
       return (
         <div>
           <ShopTitle title="Acquista" />
@@ -49,7 +51,7 @@ export class SingleProduct extends Component {
               <div className="row">
                 <div className="col-md-4">
                   <Search />
-                  <Sidebar />
+                  <Sidebar sidebar={this.props.sidebar} />
                 </div>
                 {this.state.user === null ?
                 <InfoProduct {...this.props.specific_device[0]} addcomment={this.props.addcomment} addtocart={this.props.addtocart}  />
@@ -65,7 +67,8 @@ export class SingleProduct extends Component {
 
 function mapStateToProps (state) {
   return {
-    specific_device: state.devices.specific_device
+    specific_device: state.devices.specific_device,
+    sidebar: state.devices.sidebar
   };
 }
 
@@ -79,6 +82,9 @@ function mapDispatchToProps (dispatch) {
     },
     addtocart: (model, price) => {
       dispatch(Actions.addtocart(model, price));
+    },
+    find_element_sidebar: () => {
+      dispatch(Actions.find_element_sidebar());
     }
   };
 }

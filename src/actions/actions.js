@@ -144,3 +144,22 @@ export function checkout (device) {
     }
   };
 }
+export function find_element_sidebar () {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:9000/api/sidebar',
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      types: [
+        types.SIDEBAR_REQUEST,
+        {
+          type: types.SIDEBAR_SUCCESS,
+          payload: (action, state, res) => {
+            return res.json();
+          }
+        },
+        'FAILURE'
+      ]
+    }
+  };
+}

@@ -119,6 +119,17 @@ router.route('/checkout')
   });
 });
 
+router.route('/sidebar')
+.post(function (req, res) {
+  device.find({}, function (err, device) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(device);
+    }
+  }).limit(3);
+});
+
 // Login
 passport.use(new LocalStrategy(
   function (username, password, done) {
