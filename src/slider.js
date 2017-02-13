@@ -16,7 +16,7 @@ import '../templating/js/bxslider.min.js';
 import { connect } from 'react-redux';
 import * as Actions from './actions/actions.js';
 import Loading from 'react-loading';
-import {Carousel} from 'react-bootstrap'
+import {Carousel} from 'react-bootstrap';
 
 class Slider extends Component {
   constructor (props) {
@@ -34,12 +34,11 @@ class Slider extends Component {
         <Loading type='balls' color='#e3e3e3'/>
       );
     } else {
-      console.log(this.props.devices)
       const devices_slider = this.props.devices.map((slider) =>
-        <Carousel.Item><img width={900} height={500} src={slider.images[0]} alt="Slide" />
-        <Carousel.Caption>
-          <h3>{slider.model}</h3>
-        </Carousel.Caption>
+        <Carousel.Item><img style={{width: "20%", height:"10%"}} src={slider.images[0]} alt="Slide" />
+          <Carousel.Caption>
+            <h3><a href={'/shop/' + slider.model.split(' ').join('-')}> {slider.model} </a> </h3>
+          </Carousel.Caption>
         </Carousel.Item>
     );
       return (
@@ -47,8 +46,8 @@ class Slider extends Component {
           <div className="block-slider block-slider4">
             <ul className="" id="bxslider-home4">
               <Carousel>
-            {devices_slider}
-          </Carousel>
+                {devices_slider}
+              </Carousel>
 
             </ul>
           </div>
