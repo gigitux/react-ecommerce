@@ -15,7 +15,7 @@ export default class InfoProduct extends Component {
   }
   render () {
     console.log(this.props.email)
-    const list_reviews=this.props.reviews.map((review) =>
+    const list_reviews = this.props.reviews.map((review) =>
       <div key={review._id}>
       {review.review}
         <br />

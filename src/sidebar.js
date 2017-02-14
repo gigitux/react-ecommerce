@@ -8,7 +8,6 @@ export default class Sidebar extends Component {
     };
   }
   render () {
-    console.log(this.props.sidebar)
     if (this.props.sidebar == null) {
       return (
         <Loading type='balls' color='#e3e3e3'/>

@@ -41,7 +41,6 @@ export class SingleProduct extends Component {
         <Loading type='balls' color='#e3e3e3'/>
         );
     } else {
-      console.log(this.props.sidebar)
       return (
         <div>
           <ShopTitle title="Acquista" />

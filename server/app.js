@@ -20,6 +20,11 @@ var store = new MongoDBStore(
     uri: 'mongodb://localhost:27017/commerce',
     collection: 'Sessioni'
   });
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
@@ -107,13 +112,16 @@ router.route('/addcomment')
 
 router.route('/checkout')
 .post(function (req, res) {
-  req.body.device.every(function (devices) {
-    device.findOne({model: devices.model}, function (err, devices) {
-      if (devices == null) {
-        res.status(500).json({ error: 'errore!' })
-      } else {
-        console.log("blabla")
-        res.json({ message: 'Acquisto effettuato' });
+  var failure = 0;
+  req.body.device.forEach(function (devices, index) {
+    device.findOne({model: devices.model, price: devices.price}, function (err, device) {
+      if (device == null) {
+        failure = 1;
+      }
+      if (index === req.body.device.length -1 && device !== null && failure == 0) {
+        res.status(200).end();
+      } else if (index === req.body.device.length -1 && device == null && failure == 1) {
+        res.status(400).end();
       }
     });
   });
