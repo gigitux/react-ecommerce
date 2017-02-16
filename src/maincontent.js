@@ -30,7 +30,7 @@ class MainContent extends Component {
       );
     } else {
       const devices_recent = this.props.devices.map((recent) =>
-        <div className="single-product">
+        <div className="single-product" key={recent.price} >
           <div className="product-f-image">
             <img src={recent.images[0]} alt="" height="212" width="264" />
             <div className="product-hover">

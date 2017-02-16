@@ -35,11 +35,13 @@ class Slider extends Component {
       );
     } else {
       const devices_slider = this.props.devices.map((slider) =>
-        <Carousel.Item><img style={{width: "20%", height:"10%"}} src={slider.images[0]} alt="Slide" />
-          <Carousel.Caption>
-            <h3><a href={'/shop/' + slider.model.split(' ').join('-')}> {slider.model} </a> </h3>
-          </Carousel.Caption>
-        </Carousel.Item>
+        <div key={slider.model}>
+          <Carousel.Item><img style={{width: "20%", height: "10%"}} src={slider.images[0]} alt="Slide" />
+            <Carousel.Caption>
+              <h3><a href={'/shop/' + slider.model.split(' ').join('-')}> {slider.model} </a> </h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </div>
     );
       return (
         <div className="slider-area">
